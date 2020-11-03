@@ -1,0 +1,28 @@
+// ================================================================================================
+// font-awesome
+// ================================================================================================
+$fa-font-path: '~@fortawesome/fontawesome-free/webfonts' !default; // 5 yarn add @fortawesome/fontawesome-free
+
+
+// ================================================================================================
+// font-awesome
+// ================================================================================================
+
+// 5
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+
+.fa,
+.fas {
+    font-weight: 900 !important;
+}
+
+.far {
+    font-weight: 400 !important;
+}
+
+.fab {
+    font-weight: 400 !important;
+}

@@ -1,0 +1,118 @@
+@mixin flex-wrapper-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    align-content: center;
+}
+
+@mixin flex-wrapper-row {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    align-content: stretch;
+}
+
+@mixin flex-item-one {
+    
+}
+
+@mixin flex-item-two($max-width: percentage(49/100)) {
+    max-width: $max-width;
+}
+
+@mixin flex-item-three($max-width: percentage(30/100), $margin: percentage(5/100)) {
+    max-width: $max-width;
+    &:nth-child(3n + 2):last-child {
+        margin-right: auto;
+        margin-left: $margin;
+    }
+}
+
+@mixin flex-item-four($max-width: percentage(24/100), $margin: percentage(.04/3)) {
+    max-width: $max-width;
+    &:nth-child(4n + 2):nth-last-child(2) {
+        margin-left: $margin;
+        margin-right: $margin;
+    }
+    &:nth-child(4n + 3):last-child {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    &:nth-child(4n + 2):last-child {
+        margin-left: $margin;
+        margin-right: auto;
+    }
+}
+
+@mixin flex-item-five($max-width: percentage(19/100), $margin: percentage(.05/4)) {
+    max-width: $max-width;
+    &:nth-child(5n + 2):nth-last-child(3) {
+        margin-left: $margin;
+        margin-right: $margin;
+    }
+    &:nth-child(5n + 3):nth-last-child(2) {
+        margin-left: 0;
+        margin-right: $margin;
+    }
+    &:nth-child(5n + 4):last-child {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    &:nth-child(5n + 2):nth-last-child(2) {
+        margin-left: $margin;
+        margin-right: $margin;
+    }
+    &:nth-child(5n + 3):last-child {
+        margin-left: 0;
+        margin-right: auto;
+    }
+
+    &:nth-child(5n + 2):last-child {
+        margin-left: $margin;
+        margin-right: auto;
+    }
+}
+
+/*
+
+EXAMPLE USAGE
+
+// list-wrapper
+.flex-list {
+    @include media-breakpoint-up(xs) {
+        @include flex-wrapper-column;
+    }
+    
+    @include media-breakpoint-up(sm) {
+        @include flex-wrapper-row;
+    }
+}
+
+// list-item
+.flex-list-item {
+    // one in a row
+    @include media-breakpoint-up(xs) {
+    }
+    // two in a row
+    @include media-breakpoint-only(sm) {
+        @include flex-item-two($max-width: percentage(49/100));
+       
+    }
+    // three in a row
+    @include media-breakpoint-only(md) {
+        @include flex-item-three($max-width: percentage(30/100), $margin: percentage(5/100));
+    }
+    // four in a row
+    @include media-breakpoint-only(lg) {
+        @include flex-item-four($max-width: percentage(24/100), $margin: percentage(.04/3));
+    }
+    // five in a row
+    @include media-breakpoint-up(xl) {
+        @include flex-item-five($max-width: percentage(19/100), $margin: percentage(.05/4));
+    }
+}
+ */

@@ -1,0 +1,13 @@
+a {
+    transition: all .5s;
+}
+
+a.active,
+.active > a,
+.active > span {
+    color: $link-hover-color;
+    &:hover
+    &:focus {
+        color: $link-hover-color;
+    }
+}
