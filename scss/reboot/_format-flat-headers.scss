@@ -1,0 +1,48 @@
+.format-flat-headers {
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        display: inline;
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 0; //$paragraph-margin-bottom;
+    }
+    
+    h1 + p,
+    h2 + p,
+    h3 + p,
+    h4 + p,
+    h5 + p,
+    h6 + p {
+        display: inline;
+        font-size: 1rem;
+        line-height: 1.5;
+        margin-bottom: 0;
+    }
+    
+    p + h1,
+    p + h2,
+    p + h3,
+    p + h4,
+    p + h5,
+    p + h6 {
+        &:before {
+            display: block;
+            content: " ";
+            height: $paragraph-margin-bottom;
+        }
+    }
+    
+    p {
+        margin-bottom: 0;
+    }
+    
+    p + p {
+        margin-top: $paragraph-margin-bottom;
+    }
+    
+}
