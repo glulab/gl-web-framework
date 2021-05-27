@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 // import 'external';
-
+import xGlWindowResizeListener from '@glulab/gl-window-resize-listener';
 import $ from 'jquery';
 
 export class GlFramework {
@@ -127,6 +127,9 @@ export class GlFramework {
             
         let $el = $(el);
         
+        let elPosition = $el.data('jump-out-of-container-position') || 'relative';
+        let elDisplay = $el.data('jump-out-of-container-display') || 'block';
+        
         $el.each((index, Element) => {
             
             let $e = $(Element);
@@ -134,7 +137,8 @@ export class GlFramework {
             $e.css('opacity', '0');
             $e.css('transition', 'all .5s');
             
-            $e.css('display', 'block');
+            $e.css('position', elPosition);
+            $e.css('display', elDisplay);
             $e.css('width', 'auto');
             
             let offset = (getMaxWidth() - $e.width()) / 2;
@@ -158,6 +162,10 @@ let xGlFramework = new GlFramework();
 
 $(() => {
     xGlFramework.init();
+    
+    xGlWindowResizeListener.addEvent(() => {
+        xGlFramework.onWindowResize();
+    });
 });
 
 export default xGlFramework;

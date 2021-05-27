@@ -1,8 +1,8 @@
 {
-    "name": "@glulab/gl-web-framework",
-    "version": "0.0.1",
-    "description": "GL Web Framework",
-    "main": "js/gl-web-framework.js",
+  "name": "@glulab/gl-web-framework",
+  "version": "1.0.0",
+  "description": "GL Web Framework",
+  "main": "js/gl-web-framework.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/glulab/gl-web-framework/issues"
   },
-  "homepage": "https://github.com/glulab/gl-web-framework#readme"
+  "homepage": "https://github.com/glulab/gl-web-framework#readme",
+  "dependencies": {
+    "@glulab/gl-window-resize-listener": "^1.0"
+  }
 }

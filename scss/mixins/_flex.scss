@@ -6,32 +6,65 @@
     align-content: center;
 }
 
-@mixin flex-wrapper-row {
+@mixin flex-wrapper-row($justify-content: space-between, $align-items: baseline) {
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: space-between;
-    align-items: baseline;
+    justify-content: $justify-content;
+    align-items: $align-items;
     align-content: stretch;
 }
 
-@mixin flex-item-one {
+@mixin flex-item-one($max-width: percentage(1)) {
+    margin-right: auto;
+    margin-left: auto;
+}
+
+@mixin flex-item-two($max-width: percentage(49/100), $margin: auto, $parent-width: false) {
     
-}
-
-@mixin flex-item-two($max-width: percentage(49/100)) {
+    margin-right: auto;
+    margin-left: auto;
+    
+    @if $max-width == 'auto' and $parent-width != false {
+        $max-width: ($parent-width - ($margin * 1)) / 2;
+        margin-right: initial;
+        margin-left: initial;
+    }
+    
     max-width: $max-width;
 }
 
-@mixin flex-item-three($max-width: percentage(30/100), $margin: percentage(5/100)) {
+@mixin flex-item-three($max-width: percentage(30/100), $margin: percentage(5/100), $parent-width: false) {
+    
+    @if $max-width == 'auto' and $parent-width != false {
+        $max-width: ($parent-width - ($margin * 2)) / 3;
+    }
+    
     max-width: $max-width;
+    margin-right: initial;
+    margin-left: initial;
     &:nth-child(3n + 2):last-child {
         margin-right: auto;
         margin-left: $margin;
     }
 }
 
-@mixin flex-item-four($max-width: percentage(24/100), $margin: percentage(.04/3)) {
+@mixin flex-item-four($max-width: percentage(24/100), $margin: percentage(.04/3), $parent-width: false) {
+    
+    @if $max-width == 'auto' and $parent-width != false {
+        $max-width: ($parent-width - ($margin * 3)) / 4;
+    }
+    
     max-width: $max-width;
+    margin-right: initial;
+    margin-left: initial;
+    
+    // reset 
+    &:nth-child(3n + 2):last-child {
+        margin-right: initial;
+        margin-left: initial;
+    }
+    
+    // set
     &:nth-child(4n + 2):nth-last-child(2) {
         margin-left: $margin;
         margin-right: $margin;
@@ -47,8 +80,25 @@
     }
 }
 
-@mixin flex-item-five($max-width: percentage(19/100), $margin: percentage(.05/4)) {
+@mixin flex-item-five($max-width: percentage(19/100), $margin: percentage(.05/4), $parent-width: false) {
+    
+    @if $max-width == 'auto' and $parent-width != false {
+        $max-width: ($parent-width - ($margin * 4)) / 5;
+    }
+    
     max-width: $max-width;
+    margin-right: initial;
+    margin-left: initial;
+    
+    // reset
+    &:nth-child(4n + 2):nth-last-child(2),
+    &:nth-child(4n + 3):last-child,
+    &:nth-child(4n + 2):last-child {
+        margin-right: initial;
+        margin-left: initial;
+    }
+    
+    // set
     &:nth-child(5n + 2):nth-last-child(3) {
         margin-left: $margin;
         margin-right: $margin;
@@ -113,6 +163,30 @@ EXAMPLE USAGE
     // five in a row
     @include media-breakpoint-up(xl) {
         @include flex-item-five($max-width: percentage(19/100), $margin: percentage(.05/4));
+    }
+}
+
+// list-item with auto calculate items based on parent width
+.flex-list-item {
+    // one in a row
+    @include media-breakpoint-up(xs) {
+    }
+    // two in a row
+    @include media-breakpoint-only(sm) {
+        @include flex-item-two($max-width: percentage(49/100));
+       
+    }
+    // three in a row
+    @include media-breakpoint-only(md) {
+        @include flex-item-three($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths-no-gutters, 'md'));
+    }
+    // four in a row
+    @include media-breakpoint-only(lg) {
+        @include flex-item-four($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths-no-gutters, 'lg'));
+    }
+    // five in a row
+    @include media-breakpoint-up(xl) {
+        @include flex-item-five($max-width: 'auto', $margin: 30px, $parent-width: map-get($container-max-widths-no-gutters, 'xl'));
     }
 }
  */
